@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Work Hours Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Work Hours & Pay Tracker</h1>
+
+    <div id="auth-section" class="card">
+      <h2>Login or Sign Up</h2>
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+      <button onclick="signup()">Sign Up</button>
+      <p id="auth-msg"></p>
+    </div>
+
+    <div id="app-section" class="hidden">
+      <section class="card">
+        <h2>Hourly Rate</h2>
+        <input type="number" id="hourlyRate" step="0.01" placeholder="Hourly Rate (£)" />
+        <button onclick="saveRate()">Save Rate</button>
+        <button onclick="logout()">Logout</button>
+      </section>
+
+      <section class="card">
+        <h2>Log Work</h2>
+        <input type="date" id="workDate" />
+        <input type="time" id="startTime" />
+        <input type="time" id="endTime" />
+        <input type="number" id="breakTime" placeholder="Break (min)" />
+        <button onclick="addEntry()">Add Entry</button>
+      </section>
+
+      <section class="card">
+        <h2>View</h2>
+        <select id="filter" onchange="updateTable()">
+          <option value="thisWeek">This Week</option>
+          <option value="lastWeek">Last Week</option>
+          <option value="all">All Time</option>
+        </select>
+      </section>
+
+      <section class="card">
+        <h2>Entries</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Hours</th>
+              <th>Pay (£)</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="entriesTable">
+            <tr><td colspan="4" style="text-align:center;">No entries yet</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Summary</h2>
+        <p>Total Hours: <span id="weeklyHours">0</span></p>
+        <p>Total Pay: £<span id="weeklyPay">0.00</span></p>
+      </section>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB6KYjHAAbELcEKwstgh1AZb2abqImsb5g",
+      authDomain: "worktracker-b6e6a.firebaseapp.com",
+      projectId: "worktracker-b6e6a",
+      storageBucket: "worktracker-b6e6a.firebasestorage.app",
+      messagingSenderId: "769755385406",
+      appId: "1:769755385406:web:4b5b17781c973d259c4b6f"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
